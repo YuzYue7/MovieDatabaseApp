@@ -6,27 +6,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+    private final List<Movie> movieList;
+    private final Context context;
 
-    private List<Movie> movieList;
-    private Context context;
-
-    public MovieAdapter(Context context, List<Movie> movies) {
+    public MovieAdapter(Context context, List<Movie> movieList) {
         this.context = context;
-        this.movieList = movies;
+        this.movieList = movieList;
     }
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
         ImageView imageViewPoster;
         TextView textViewTitle, textViewYear, textViewGenre;
 
-        public MovieViewHolder(@NonNull View itemView) {
+        public MovieViewHolder(View itemView) {
             super(itemView);
             imageViewPoster = itemView.findViewById(R.id.imageViewPoster);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
@@ -38,7 +35,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.item_movie, parent, false);
         return new MovieViewHolder(view);
     }
 

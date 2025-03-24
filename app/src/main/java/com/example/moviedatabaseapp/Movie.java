@@ -1,34 +1,20 @@
 package com.example.moviedatabaseapp;
 
 public class Movie {
-    private String title;
-    private int year;
-    private String genre;
-    private int posterResId;
+    private final String title;
+    private final int year;
+    private final String genre;
+    private final int posterResId;
 
     public Movie(String title, int year, String genre, int posterResId) {
-        if (title == null || title.isEmpty()) {
-            throw new IllegalArgumentException("Movie title cannot be null or empty");
-        }
-        this.title = title;
-        this.year = year;
-        this.genre = genre;
-        this.posterResId = posterResId;
+        this.title = (title == null || title.isEmpty()) ? "Unknown Title" : title;
+        this.year = Math.max(year, 1888);
+        this.genre = (genre == null || genre.isEmpty()) ? "Unknown" : genre;
+        this.posterResId = (posterResId == 0) ? R.drawable.placeholder : posterResId;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public int getPosterResId() {
-        return posterResId;
-    }
+    public String getTitle() { return title; }
+    public int getYear() { return year; }
+    public String getGenre() { return genre; }
+    public int getPosterResId() { return posterResId; }
 }
